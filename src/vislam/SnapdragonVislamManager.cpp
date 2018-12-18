@@ -108,6 +108,9 @@ int32_t Snapdragon::VislamManager::Initialize
 
   //now intialize the VISLAM module.
   if( rc == 0 ) {
+
+    char flNme[10] = "na" ;
+    float tmpArr[4] = [0.0, 0.0, 0.0, 0.0];
     vislam_ptr_ = mvVISLAM_Initialize
     (
       &(cam_params_.mv_camera_config),
@@ -118,7 +121,9 @@ int32_t Snapdragon::VislamManager::Initialize
       vislam_params_.stdCamNoise, vislam_params_.minStdPixelNoise, vislam_params_.failHighPixelNoisePoints,
       vislam_params_.logDepthBootstrap, vislam_params_.useLogCameraHeight, vislam_params_.logCameraHeightBootstrap,
       vislam_params_.noInitWhenMoving,
-      vislam_params_.limitedIMUbWtrigger
+      vislam_params_.limitedIMUbWtrigger,
+      0,
+      tmpArr
     );
     if( vislam_ptr_ == nullptr ) {
       rc = -1;
