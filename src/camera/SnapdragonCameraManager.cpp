@@ -220,8 +220,8 @@ int32_t Snapdragon::CameraManager::Stop() {
 void Snapdragon::CameraManager::UpdateGainAndExposure()
 {
   mvCPA_AddFrame(mvCPA_ptr_, frame_queue_[frame_q_write_index_].second->data,
-      camera_config_ptr_->pixel_width,
-      camera_config_ptr_->pixel_height,
+      camera_config_ptr_->pixel_width *
+      camera_config_ptr_->pixel_height *
       camera_config_ptr_->memory_stride);
 
   float cpa_exposure, cpa_gain;
